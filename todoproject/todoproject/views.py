@@ -3,13 +3,13 @@ from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from todoproject.forms import *
+from todoapp.models import *
 
 
 def signupPage(request):
     if request.method == 'POST':
         signupform = CustomToDoUserForm(request.POST, request.FILES)
-        print(signupform)
-        
+
         if signupform.is_valid():
             signupform.save()
             

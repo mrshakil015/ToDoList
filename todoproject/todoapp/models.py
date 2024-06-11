@@ -26,6 +26,8 @@ class CategoryModel(models.Model):
         ordering=['CategoryName']
         verbose_name = "Category Info"
         db_table = "category_name_table"
+    def __str__(self):
+        return self.CategoryName
 
 class TaskModel(models.Model):
     PRIORITY = [
@@ -36,11 +38,12 @@ class TaskModel(models.Model):
     category = models.ForeignKey(CategoryModel,on_delete=models.CASCADE,null=True)
     Priority = models.CharField(choices=PRIORITY,max_length=100, null=True)
     TaskName = models.CharField(max_length=100,null=True)    
-    TaskDescription = models.CharField(max_length=100,null=True)    
+    TaskDescription = models.TextField(null=True)    
     Status = models.CharField(max_length=100,null=True)    
     Created_at = models.DateField(auto_now_add=True,max_length=100,null=True)    
     Updated_at = models.DateField(auto_now=True,max_length=100,null=True)    
     DueDate = models.DateField(max_length=100,null=True)    
+    CompletedDate = models.DateField(max_length=100,null=True)    
     
     class Meta:
         ordering = ["category"]

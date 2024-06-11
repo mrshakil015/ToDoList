@@ -16,3 +16,26 @@ class CategoryForm(forms.ModelForm):
     class Meta:
         model = CategoryModel
         fields = ['CategoryName']
+        
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = TaskModel
+        fields = ['TaskName','TaskDescription','category','Priority','DueDate']
+        exclude = ['CompletedDate']
+        
+        widgets = {
+            'DueDate':forms.DateInput(attrs={
+              'type'  :'date','class':'date-field'
+            }),
+            'CompletedDate':forms.DateInput(attrs={
+                'type':'date'
+            })
+        }
+        
+        labels = {
+            "TaskName":"Task Name",
+            "TaskDescription":"Task Description",
+            "DueDate":"Due Date",
+        }
+        
+        

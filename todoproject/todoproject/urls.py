@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from todoproject.views import *
+from todoproject.userviews import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -13,5 +14,8 @@ urlpatterns = [
     path('categoryList/',categoryList,name="categoryList"),
     path('editcategory/<str:myid>',editcategory,name="editcategory"),
     path('deletecategory/<str:myid>',deletecategory,name="deletecategory"),
+    
+    path('addTask/',addTask,name="addTask"),
+    path('inbox/',inbox,name="inbox"),
 
 ]
