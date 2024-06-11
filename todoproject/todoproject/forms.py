@@ -29,6 +29,12 @@ class TaskForm(forms.ModelForm):
             }),
             'CompletedDate':forms.DateInput(attrs={
                 'type':'date'
+            }),
+            'Created_at':forms.DateInput(attrs={
+                'type':'date'
+            }),
+            'Updated_at':forms.DateInput(attrs={
+                'type':'date'
             })
         }
         
