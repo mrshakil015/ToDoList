@@ -8,5 +8,10 @@ urlpatterns = [
     path('signinPage/',signinPage,name="signinPage"),
     path('dashboard/',dashboard,name="dashboard"),
     path('logoutPage/',logoutPage,name="logoutPage"),
+    
+    path('addCategory/',addCategory,name="addCategory"),
+    path('categoryList/',categoryList,name="categoryList"),
+    path('editcategory/<str:myid>',editcategory,name="editcategory"),
+    path('deletecategory/<str:myid>',deletecategory,name="deletecategory"),
 
 ]

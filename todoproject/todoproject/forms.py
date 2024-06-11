@@ -11,3 +11,8 @@ class CustomToDoUserAuthentationForm(AuthenticationForm):
     class Meta:
         model = CustomToDoUserModel
         fields = ("username","password")
+        
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = CategoryModel
+        fields = ['CategoryName']
