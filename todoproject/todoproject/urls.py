@@ -20,6 +20,7 @@ urlpatterns = [
     path('todayTaskList/',todayTaskList,name="todayTaskList"),
     path('upcommingTaskList/',upcommingTaskList,name="upcommingTaskList"),
     path('finishedTaskList/',finishedTaskList,name="finishedTaskList"),
+    path('editTask/<str:myid>',editTask,name="editTask"),
     path('finishedTask/<str:myid>',finishedTask,name="finishedTask"),
     path('deleteTask/<str:myid>',deleteTask,name="deleteTask"),
 

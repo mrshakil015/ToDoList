@@ -19,6 +19,18 @@ def addTask(request):
         formdata = TaskForm(request.POST)
     return render(request,'myuser/addtask.html',{'formdata':formdata})
 
+def editTask(request,myid):
+    taskdata = get_object_or_404(TaskModel,id=myid)
+    if request.method == 'POST':
+        edittaskinfo = TaskForm(request.POST, instance=taskdata)
+        edittaskinfo.save()
+        return redirect('inbox')
+    else:
+        edittaskinfo = TaskForm(instance=taskdata)
+
+    return render(request,'myuser/edittask.html',{'edittaskinfo':edittaskinfo})
+        
+
 def inbox(request):
     current_user = request.user
     taskdata=TaskModel.objects.filter(Status = 'OnGoing', user = current_user)
@@ -39,8 +51,8 @@ def todayTaskList(request):
 
 def upcommingTaskList(request):
     today = datetime.datetime.now()
-
-    taskdata = TaskModel.objects.filter(~Q(DueDate=today),Status = 'OnGoing')
+    current_user = request.user
+    taskdata = TaskModel.objects.filter(~Q(DueDate=today),Status = 'OnGoing',user=current_user)
     
     return render(request,'myuser/upcommingtasklist.html',{'taskdata':taskdata})
 
@@ -54,7 +66,8 @@ def finishedTask(request,myid):
     return redirect('finishedTaskList')
 
 def finishedTaskList(request):
-    taskdata = TaskModel.objects.filter(Status = 'Finished')
+    current_user = request.user
+    taskdata = TaskModel.objects.filter(Status = 'Finished',user=current_user)
     
     
     return render(request,'myuser/finishedtask.html',{'taskdata':taskdata})
