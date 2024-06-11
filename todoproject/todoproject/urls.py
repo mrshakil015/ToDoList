@@ -17,5 +17,6 @@ urlpatterns = [
     
     path('addTask/',addTask,name="addTask"),
     path('inbox/',inbox,name="inbox"),
+    path('deleteTask/<str:myid>',deleteTask,name="deleteTask"),
 
 ]

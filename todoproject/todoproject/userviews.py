@@ -20,3 +20,8 @@ def inbox(request):
     taskdata=TaskModel.objects.all()
     
     return render(request,'myuser/inbox.html',{'taskdata':taskdata})
+
+def deleteTask(request,myid):
+    taskdata = TaskModel.objects.get(id=myid)
+    taskdata.delete()
+    return redirect('inbox')
