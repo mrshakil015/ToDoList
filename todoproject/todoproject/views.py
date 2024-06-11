@@ -44,3 +44,8 @@ def signinPage(request):
 def dashboard(request):
     
     return render(request,'dashboard.html')
+
+def logoutPage(request):
+    logout(request)
+    
+    return redirect('signinPage')

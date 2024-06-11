@@ -7,5 +7,6 @@ urlpatterns = [
     path('',signupPage,name="signupPage"),
     path('signinPage/',signinPage,name="signinPage"),
     path('dashboard/',dashboard,name="dashboard"),
+    path('logoutPage/',logoutPage,name="logoutPage"),
 
 ]
