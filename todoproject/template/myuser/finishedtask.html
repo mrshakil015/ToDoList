@@ -6,7 +6,7 @@
     <div class="page-header">
        <div class="row align-items-center">
           <div class="col">
-             <h2 class="page-title"><strong>All Schecdule</strong></h2>
+             <h2 class="page-title"><strong>Finished's Task</strong></h2>
              
           </div>
           <div class="col-auto text-right float-right ml-auto">
@@ -21,11 +21,15 @@
      <div class="col-sm-12">
       <div class="card card-table">
         <div class="card-header">
-           <span class="btn btn-primary btn-sm">{{forloop.counter}}</span>
-           <span class="page-title"><strong>{{i.TaskName}}</strong></span><br>
+            <span class="btn btn-primary btn-sm">{{forloop.counter}}</span>
+            <span class="page-title"><strong>{{i.TaskName}}</strong></span><br>
            <span><i class="fas fa-calendar-day"></i><strong> Created Date:</strong> {{i.Created_at}}</span>
            <span><i class="fas fa-calendar-plus"></i><strong> Due Date:</strong> {{i.DueDate}}</span>
+
+           {% if i.Status == 'OnGoing' %}
+           <span><strong> Status:</strong> <i class="fas fa-spinner fa-spin"></i></span>
             
+           {% endif %}
 
            {% if i.Priority == 'High' %}
            <span class="btn btn-danger btn-sm"><i class="fas fa-flag"></i> {{i.Priority}}</span>
@@ -42,7 +46,7 @@
            
          </div>
          <div class="card-footer">
-            <a href="{% url 'finishedTask' i.id %}" class="btn btn-rounded btn-info"><i class="fas fa-spinner fa-spin"></i> On Going</a>
+            <a href="{% url 'addTask' %}" class="btn btn-rounded btn-info"><i class="fas fa-check-circle"></i> Finished</a>
             <a href="{% url 'deleteTask' i.id %}" class="btn btn-rounded btn-danger"><i class="fas fa-times-circle"></i> Delete</a>
          </div>
       </div>

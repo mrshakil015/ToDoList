@@ -4,6 +4,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from todoproject.forms import *
 from todoapp.models import *
+from todoproject.userviews import inbox
 
 
 def signupPage(request):
@@ -31,7 +32,7 @@ def signinPage(request):
         if signinform.is_valid():
             user = signinform.get_user()
             login(request,user)
-            return redirect('dashboard')
+            return redirect('inbox')
     else:
         signinform = CustomToDoUserAuthentationForm()
     context = {

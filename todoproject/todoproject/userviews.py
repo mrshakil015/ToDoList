@@ -11,15 +11,17 @@ def addTask(request):
         formdata = TaskForm(request.POST)
         
         if formdata.is_valid():
-            formdata.save()
-            
+            task = formdata.save(commit=False)
+            task.user = request.user
+            task.save()
             return redirect('inbox')
     else:
         formdata = TaskForm(request.POST)
     return render(request,'myuser/addtask.html',{'formdata':formdata})
 
 def inbox(request):
-    taskdata=TaskModel.objects.all()
+    current_user = request.user
+    taskdata=TaskModel.objects.filter(Status = 'OnGoing', user = current_user)
     
     return render(request,'myuser/inbox.html',{'taskdata':taskdata})
 
@@ -30,14 +32,29 @@ def deleteTask(request,myid):
 
 def todayTaskList(request):
     today = datetime.datetime.now()
-
-    taskdata = TaskModel.objects.filter(DueDate = today)
+    current_user = request.user
+    taskdata = TaskModel.objects.filter(DueDate = today, Status = 'OnGoing', user = current_user)
     
     return render(request,'myuser/todaytasklist.html',{'taskdata':taskdata})
 
 def upcommingTaskList(request):
     today = datetime.datetime.now()
 
-    taskdata = TaskModel.objects.filter(~Q(DueDate=today))
+    taskdata = TaskModel.objects.filter(~Q(DueDate=today),Status = 'OnGoing')
     
     return render(request,'myuser/upcommingtasklist.html',{'taskdata':taskdata})
+
+def finishedTask(request,myid):
+    taskdata = get_object_or_404(TaskModel, id=myid)
+    taskdata.Status = 'Finished'
+    today = datetime.datetime.now()
+    taskdata.CompletedDate=today
+    taskdata.save()
+    
+    return redirect('finishedTaskList')
+
+def finishedTaskList(request):
+    taskdata = TaskModel.objects.filter(Status = 'Finished')
+    
+    
+    return render(request,'myuser/finishedtask.html',{'taskdata':taskdata})

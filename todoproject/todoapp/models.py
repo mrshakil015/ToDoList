@@ -39,11 +39,12 @@ class TaskModel(models.Model):
     Priority = models.CharField(choices=PRIORITY,max_length=100, null=True)
     TaskName = models.CharField(max_length=100,null=True)    
     TaskDescription = models.TextField(null=True)    
-    Status = models.CharField(max_length=100,null=True)    
+    Status = models.CharField(default="OnGoing", max_length=100,null=True)    
     Created_at = models.DateField(auto_now_add=True,max_length=100,null=True)    
     Updated_at = models.DateField(auto_now=True,max_length=100,null=True)    
     DueDate = models.DateField(max_length=100,null=True)    
-    CompletedDate = models.DateField(max_length=100,null=True)    
+    CompletedDate = models.DateField(max_length=100,null=True)  
+    user = models.ForeignKey(CustomToDoUserModel, on_delete=models.CASCADE, null = True)  
     
     def __str__(self):
         return self.TaskName
@@ -52,3 +53,4 @@ class TaskModel(models.Model):
         ordering = ["category"]
         verbose_name = "Task Data Model"
         db_table = "task_data_table"
+    
