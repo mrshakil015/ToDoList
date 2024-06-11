@@ -45,6 +45,9 @@ class TaskModel(models.Model):
     DueDate = models.DateField(max_length=100,null=True)    
     CompletedDate = models.DateField(max_length=100,null=True)    
     
+    def __str__(self):
+        return self.TaskName
+    
     class Meta:
         ordering = ["category"]
         verbose_name = "Task Data Model"
