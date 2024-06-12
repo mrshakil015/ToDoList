@@ -33,9 +33,18 @@ def editTask(request,myid):
 
 def inbox(request):
     current_user = request.user
+    today = datetime.datetime.now()
     taskdata=TaskModel.objects.filter(Status = 'OnGoing', user = current_user)
-    
-    return render(request,'myuser/inbox.html',{'taskdata':taskdata})
+    ongoing = TaskModel.objects.filter(DueDate = today, Status = 'OnGoing', user = current_user).count()
+    finished = TaskModel.objects.filter(Status = 'Finished', user = current_user).count()
+    upcomming = TaskModel.objects.filter(~Q(DueDate=today),Status = 'OnGoing',user=current_user).count()
+    context = {
+        'taskdata':taskdata,
+        'ongoing':ongoing,
+        'finished':finished,
+        'upcomming':upcomming,
+        }
+    return render(request,'myuser/inbox.html',context)
 
 def deleteTask(request,myid):
     taskdata = TaskModel.objects.get(id=myid)
