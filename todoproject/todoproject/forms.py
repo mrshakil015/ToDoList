@@ -5,7 +5,7 @@ from todoapp.models import *
 class CustomToDoUserForm(UserCreationForm):
     class Meta:
         model = CustomToDoUserModel
-        fields = UserCreationForm.Meta.fields+("first_name","last_name","email","email","ProfilePic","UserType")
+        fields = UserCreationForm.Meta.fields+("first_name","last_name","email","email","ProfilePic")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -10,7 +10,7 @@ class CustomUserDisplay(admin.ModelAdmin):
         (
             "User Information",
         {
-            "fields":["username","first_name","last_name","email","password"]
+            "fields":["username","first_name","last_name","email","password","UserType"]
         }
         )
     ]

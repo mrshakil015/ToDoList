@@ -9,9 +9,11 @@ from todoproject.userviews import inbox
 
 def signupPage(request):
     if request.method == 'POST':
-        signupform = CustomToDoUserForm(request.POST, request.FILES)
+        formdata = CustomToDoUserForm(request.POST, request.FILES)
 
-        if signupform.is_valid():
+        if formdata.is_valid():
+            signupform = formdata.save(commit=False)
+            signupform.UserType = 'Viewer'
             signupform.save()
             
             messages.success(request,"Signup Successfully")

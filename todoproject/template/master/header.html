@@ -36,7 +36,7 @@
             {% else %}
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                 <span class="user-img"><img class="rounded-circle"
-                        src="{% static 'assets/img/logo-small-2.png' %}" style="border: 2px solid rgb(13, 100, 144, 0.818); object-fit:cover;" width="31" height="31"
+                        src="{{user.ProfilePic.url}}" style="border: 2px solid rgb(13, 100, 144, 0.818); object-fit:cover;" width="31" height="31"
                         alt="img"></span>
             </a>
             {% endif %}
@@ -47,7 +47,7 @@
                     {% if user.UserType == 'Viewer' %}
          
                     <div class="user-text">
-                        <h6>Viewer</h6>
+                        <h6>{{user.first_name}} {{user.last_name}}</h6>
                         <p class="text-muted mb-0">{{user.UserType}}</p>
                     </div>
 
@@ -61,13 +61,6 @@
                         
                     
                 </div>
-                {% if user.UserType == 'Viewer' %}
-                <a class="dropdown-item" href="">My Profile</a>
-                {% else %}
-                <a class="dropdown-item" href="">My Profile</a>
-
-
-                {% endif %}
                 <a class="dropdown-item" href="{% url 'logoutPage' %}">Logout</a>
             </div>
         </li>
