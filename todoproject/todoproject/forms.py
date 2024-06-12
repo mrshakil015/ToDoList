@@ -7,6 +7,11 @@ class CustomToDoUserForm(UserCreationForm):
         model = CustomToDoUserModel
         fields = UserCreationForm.Meta.fields+("first_name","last_name","email","email","ProfilePic","UserType")
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        for field_name in self.fields:
+            self.fields[field_name].help_text = None
 class CustomToDoUserAuthentationForm(AuthenticationForm):
     class Meta:
         model = CustomToDoUserModel
@@ -16,6 +21,7 @@ class CategoryForm(forms.ModelForm):
     class Meta:
         model = CategoryModel
         fields = ['CategoryName']
+        
         
 class TaskForm(forms.ModelForm):
     class Meta:
