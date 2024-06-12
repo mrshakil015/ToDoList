@@ -5,8 +5,8 @@ from todoproject.userviews import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',signupPage,name="signupPage"),
-    path('signinPage/',signinPage,name="signinPage"),
+    path('signupPage/',signupPage,name="signupPage"),
+    path('',signinPage,name="signinPage"),
     path('dashboard/',dashboard,name="dashboard"),
     path('logoutPage/',logoutPage,name="logoutPage"),
     
@@ -20,6 +20,8 @@ urlpatterns = [
     path('todayTaskList/',todayTaskList,name="todayTaskList"),
     path('upcommingTaskList/',upcommingTaskList,name="upcommingTaskList"),
     path('finishedTaskList/',finishedTaskList,name="finishedTaskList"),
+    path('searchTask/',searchTask,name="searchTask"),
+    
     path('editTask/<str:myid>',editTask,name="editTask"),
     path('finishedTask/<str:myid>',finishedTask,name="finishedTask"),
     path('deleteTask/<str:myid>',deleteTask,name="deleteTask"),

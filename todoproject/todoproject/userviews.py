@@ -71,3 +71,25 @@ def finishedTaskList(request):
     
     
     return render(request,'myuser/finishedtask.html',{'taskdata':taskdata})
+
+def searchTask(request):
+    try:
+        if request.method == 'GET':
+            query = request.GET.get("searchquery")
+            
+            search = TaskModel.objects.filter(
+                Q(TaskName__icontains = query)|
+                Q(DueDate__icontains = query)|
+                Q(Created_at__icontains = query)
+            )
+            context = {
+                'query':query,
+                'search':search,
+            }
+        else:
+            context={}
+            print("Else work")
+    except:
+        context={}
+    return render(request,'myuser/searchtask.html',context)
+
