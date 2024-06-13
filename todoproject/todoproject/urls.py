@@ -9,7 +9,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('signupPage/',signupPage,name="signupPage"),
     path('',signinPage,name="signinPage"),
-    path('dashboard/',dashboard,name="dashboard"),
     path('logoutPage/',logoutPage,name="logoutPage"),
     
     path('addCategory/',addCategory,name="addCategory"),

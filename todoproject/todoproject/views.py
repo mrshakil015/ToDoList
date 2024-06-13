@@ -43,10 +43,6 @@ def signinPage(request):
     
     return render(request,'signin.html',context)
 
-@login_required
-def dashboard(request):
-    
-    return render(request,'dashboard.html')
 
 def logoutPage(request):
     logout(request)
