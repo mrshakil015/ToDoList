@@ -34,7 +34,10 @@ def signinPage(request):
         if signinform.is_valid():
             user = signinform.get_user()
             login(request,user)
-            return redirect('inbox')
+            if user.UserType == 'Viewer':
+                return redirect('inbox')
+            else:
+                return redirect('categoryList')
     else:
         signinform = CustomToDoUserAuthentationForm()
     context = {
@@ -87,4 +90,16 @@ def deletecategory(request,myid):
     category = get_object_or_404(CategoryModel,id=myid)
     category.delete()
     return redirect('categoryList')
-            
+        
+def userList(request):
+    userdata = CustomToDoUserModel.objects.filter(UserType = "Viewer")
+    
+    context = {
+        "userdata":userdata
+    }    
+    return render(request,'myadmin/userlist.html',context)
+
+def deleteUser(request,myid):
+    userdata = get_object_or_404(CustomToDoUserModel,id=myid)
+    userdata.delete()
+    return redirect('userList')

@@ -10,6 +10,8 @@ urlpatterns = [
     path('signupPage/',signupPage,name="signupPage"),
     path('',signinPage,name="signinPage"),
     path('logoutPage/',logoutPage,name="logoutPage"),
+    path('userList/',userList,name="userList"),
+    path('deleteUser/<str:myid>',deleteUser,name="deleteUser"),
     
     path('addCategory/',addCategory,name="addCategory"),
     path('categoryList/',categoryList,name="categoryList"),
